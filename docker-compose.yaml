@@ -1,0 +1,7 @@
+services:      
+  images:
+    container_name: images-service
+    build: ./
+    ports:
+      - "6666:8080"
+    restart: unless-stopped
