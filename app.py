@@ -1,4 +1,5 @@
 from bottle import Bottle, run, static_file
+import os
 
 app = Bottle()
 
@@ -17,4 +18,13 @@ def index():
     '''
 
 if __name__ == '__main__':
-    run(app, host='localhost', port=8080, debug=True)
+    # run(app, host='localhost', port=8080, debug=True)
+    PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static').replace('\\', '/')
+    HOST = os.environ.get('SERVER_HOST', 'localhost')
+    try:
+        PORT = int(os.environ.get('SERVER_PORT', '6666'))
+    except ValueError:
+        PORT = 6666
+
+    run(app=app, host='localhost', port='6666')
