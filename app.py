@@ -1,7 +1,7 @@
-from bottle import Bottle, run, static_file
+from bottle import Bottle, run, static_file, app
 import os
 
-app = Bottle()
+app = app()
 
 @app.route('/static/<filename>')
 def serve_image(filename):
@@ -18,4 +18,12 @@ def index():
     '''
 
 if __name__ == '__main__':
+    PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static').replace('\\', '/')
+    HOST = os.environ.get('SERVER_HOST', 'localhost')
+    try:
+        PORT = int(os.environ.get('SERVER_PORT', '5556'))
+    except ValueError:
+        PORT = 5556
+
     run(app=app, host='localhost', port='8080')

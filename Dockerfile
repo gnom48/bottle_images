@@ -8,6 +8,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-EXPOSE 6666
+EXPOSE 5556
 
-CMD ["gunicorn", "-b", "0.0.0.0:6666", "-w", "3", "--log-file", "-", "--log-level", "debug", "--access-logfile", "-", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:5556", "-w", "3", "--log-file", "-", "--log-level", "debug", "--access-logfile", "-", "app:app"]
